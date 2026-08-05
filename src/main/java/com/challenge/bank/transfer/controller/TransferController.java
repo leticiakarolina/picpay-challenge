@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.challenge.bank.transfer.dtos.TransferRequestDTO;
 import com.challenge.bank.transfer.dtos.TransferResponseDTO;
-import com.challenge.bank.transfer.services.TransferService;
+import com.challenge.bank.transfer.service.TransferService;
 import com.challenge.bank.user.service.UserService;
 
 @RestController

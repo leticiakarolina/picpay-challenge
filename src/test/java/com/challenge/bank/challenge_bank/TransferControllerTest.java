@@ -23,7 +23,7 @@ import com.challenge.bank.authentication.service.JwtTokenService;
 import com.challenge.bank.transfer.controller.TransferController;
 import com.challenge.bank.transfer.dtos.TransferRequestDTO;
 import com.challenge.bank.transfer.dtos.TransferResponseDTO;
-import com.challenge.bank.transfer.services.TransferService;
+import com.challenge.bank.transfer.service.TransferService;
 import com.challenge.bank.user.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

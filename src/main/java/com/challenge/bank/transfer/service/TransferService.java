@@ -1,4 +1,4 @@
-package com.challenge.bank.transfer.services;
+package com.challenge.bank.transfer.service;
 
 import java.math.BigDecimal;
 

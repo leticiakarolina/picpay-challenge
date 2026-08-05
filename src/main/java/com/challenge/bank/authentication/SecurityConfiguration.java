@@ -28,10 +28,13 @@ public class SecurityConfiguration {
 		
 		return httpSecurity
 				.csrf(csrf -> csrf.disable())
+				.headers(headers -> headers
+	                    .frameOptions(frame -> frame.sameOrigin()))
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(authorize -> authorize
-						.requestMatchers(HttpMethod.POST, "/api/user").permitAll()
+						.requestMatchers(HttpMethod.POST, "/api/users").permitAll()
 						.requestMatchers(HttpMethod.POST, "/api/authentication").permitAll()
+						.requestMatchers("/h2-console/**").permitAll()
 						.anyRequest().authenticated()
 				)
 				.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)

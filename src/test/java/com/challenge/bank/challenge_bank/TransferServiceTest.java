@@ -24,7 +24,7 @@ import com.challenge.bank.transfer.dtos.TransferRequestDTO;
 import com.challenge.bank.transfer.dtos.TransferResponseDTO;
 import com.challenge.bank.transfer.entities.Transfer;
 import com.challenge.bank.transfer.repository.TransferRepository;
-import com.challenge.bank.transfer.services.TransferService;
+import com.challenge.bank.transfer.service.TransferService;
 import com.challenge.bank.user.entities.User;
 import com.challenge.bank.user.role.entities.Role;
 import com.challenge.bank.user.role.entities.enums.RoleName;

@@ -33,12 +33,10 @@ public class UserService {
 		return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "The user with ID " + id + " was not found"));
 	}
 	
-	public UserResponseDTO saveUser(UserDTO userDTO) {
+	public User saveUser(UserDTO userDTO) {
 		validateUserRegistrationByIdentities(userDTO);
 		User user = createUser(userDTO);
-		User userSaved = userRepository.save(user);
-		
-		return createUserResponseDTO(userSaved);
+		return userRepository.save(user);
 	}
 	
 	public void updateUser(User user) {
