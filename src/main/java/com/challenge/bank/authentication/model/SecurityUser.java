@@ -1,0 +1,39 @@
+package com.challenge.bank.authentication.model;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.challenge.bank.user.entities.User;
+
+public class SecurityUser implements UserDetails {
+
+	private static final long serialVersionUID = 3754880556428265008L;
+	
+	private User user;
+
+	public SecurityUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return user.getUserRoles().stream()
+				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public String getPassword() {
+		return user.getPassword();
+	}
+
+	@Override
+	public String getUsername() {
+		return user.getEmail();
+	}
+
+}
