@@ -1,8 +1,6 @@
 package com.challenge.bank.user.dtos;
 
-import java.util.List;
-
-import com.challenge.bank.user.role.entities.Role;
+import com.challenge.bank.user.role.enums.Role;
 
 public record UserResponseDTO(
 	String firstName,
@@ -10,6 +8,6 @@ public record UserResponseDTO(
 	String cpf,
 	String cnpj,
 	String email,
-	List<Role> roles) {
+	Role role) {
 
 }

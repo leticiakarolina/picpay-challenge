@@ -1,9 +1,8 @@
 package com.challenge.bank.user.dtos;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-import com.challenge.bank.user.role.entities.enums.RoleName;
+import com.challenge.bank.user.role.enums.Role;
 
 public record UserDTO(
 	String firstName,
@@ -12,7 +11,7 @@ public record UserDTO(
 	String cnpj,
 	String email,
 	String password,
-	List<RoleName> roles,
+	Role role,
 	BigDecimal amount) {
 
 }

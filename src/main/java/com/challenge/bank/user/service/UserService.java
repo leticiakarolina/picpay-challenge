@@ -13,20 +13,14 @@ import com.challenge.bank.user.dtos.UserDTO;
 import com.challenge.bank.user.dtos.UserResponseDTO;
 import com.challenge.bank.user.entities.User;
 import com.challenge.bank.user.repository.UserRepository;
-import com.challenge.bank.user.role.entities.Role;
-import com.challenge.bank.user.role.repository.RoleRepository;
 
 @Service
 public class UserService {
 
 	private final UserRepository userRepository;
-	private final RoleRepository roleRepository;
-	private final BCryptPasswordEncoder passwordEnconder;
 	
-	public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEnconder, RoleRepository roleRepository) {
+	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
-		this.passwordEnconder = passwordEnconder;
-		this.roleRepository = roleRepository;
 	}
 	
 	public User findUserById(Long id) {
@@ -71,12 +65,8 @@ public class UserService {
 		user.setCpf(userDTO.cpf());
 		user.setCnpj(userDTO.cnpj());
 		user.setEmail(userDTO.email());
-		user.setPassword(passwordEnconder.encode(userDTO.password()));
-		
-		List<Role> roles = roleRepository.findByNameIn(userDTO.roles());
-		
-		user.setUserRoles(roles);
-		user.setAmount(userDTO.amount());
+		user.setPassword(userDTO.password());
+		user.setUserRole(userDTO.role());
 		
 		return user;
 	}
@@ -88,7 +78,7 @@ public class UserService {
 			user.getCpf(), 
 			user.getCnpj(), 
 			user.getEmail(), 
-			user.getUserRoles());
+			user.getUserRole());
 		
 		return userDto;
 	}

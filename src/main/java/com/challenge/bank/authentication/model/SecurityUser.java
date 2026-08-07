@@ -2,6 +2,7 @@ package com.challenge.bank.authentication.model;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,9 +22,7 @@ public class SecurityUser implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return user.getUserRoles().stream()
-				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
-				.collect(Collectors.toList());
+		return Stream.of(user.getUserRole()).map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList());
 	}
 
 	@Override

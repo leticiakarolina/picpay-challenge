@@ -24,7 +24,7 @@ import com.challenge.bank.exception.BusinessRuleException;
 import com.challenge.bank.user.dtos.UserDTO;
 import com.challenge.bank.user.entities.User;
 import com.challenge.bank.user.repository.UserRepository;
-import com.challenge.bank.user.role.entities.enums.RoleName;
+import com.challenge.bank.user.role.enums.RoleName;
 import com.challenge.bank.user.role.repository.RoleRepository;
 import com.challenge.bank.user.service.UserService;
 

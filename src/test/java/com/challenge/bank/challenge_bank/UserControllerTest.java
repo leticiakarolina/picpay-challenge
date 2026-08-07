@@ -23,7 +23,7 @@ import com.challenge.bank.authentication.service.JwtTokenService;
 import com.challenge.bank.user.controller.UserController;
 import com.challenge.bank.user.dtos.UserDTO;
 import com.challenge.bank.user.repository.UserRepository;
-import com.challenge.bank.user.role.entities.enums.RoleName;
+import com.challenge.bank.user.role.enums.RoleName;
 import com.challenge.bank.user.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

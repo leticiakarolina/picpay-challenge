@@ -1,24 +1,20 @@
 package com.challenge.bank.user.entities;
 
-import java.math.BigDecimal;
 import java.util.List;
 
-import org.hibernate.usertype.UserType;
-
 import com.challenge.bank.transfer.entities.Transfer;
-import com.challenge.bank.user.role.entities.Role;
+import com.challenge.bank.user.role.enums.Role;
+import com.challenge.bank.wallet.entities.Wallet;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -47,22 +43,18 @@ public class User {
 	@Column(name="password_auth")
 	private String password;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(
-		name = "users_roles",
-	    joinColumns = @JoinColumn(name = "user_id"),
-	    inverseJoinColumns = @JoinColumn(name = "role_id")
-	)
-	private List<Role> userRoles;
-	
-	@Column(name="amount")
-	private BigDecimal amount;
+	@Column(name="role")
+	private Role userRole;
 	
 	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Transfer> transfersReceived;
 	
 	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Transfer> transfersSend;
+	
+	@OneToOne(mappedBy = "user")
+	@PrimaryKeyJoinColumn
+	private Wallet wallet;
 
 	public Long getId() {
 		return id;
@@ -120,20 +112,12 @@ public class User {
 		this.password = password;
 	}
 
-	public List<Role> getUserRoles() {
-		return userRoles;
+	public Role getUserRole() {
+		return userRole;
 	}
 
-	public void setUserRoles(List<Role> userRoles) {
-		this.userRoles = userRoles;
-	}
-
-	public BigDecimal getAmount() {
-		return amount;
-	}
-
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
+	public void setUserRole(Role userRole) {
+		this.userRole = userRole;
 	}
 
 	public List<Transfer> getTransfersReceived() {
@@ -150,6 +134,14 @@ public class User {
 
 	public void setTransfersSend(List<Transfer> transfersSend) {
 		this.transfersSend = transfersSend;
+	}
+
+	public Wallet getWallet() {
+		return wallet;
+	}
+
+	public void setWallet(Wallet wallet) {
+		this.wallet = wallet;
 	}
 
 }
